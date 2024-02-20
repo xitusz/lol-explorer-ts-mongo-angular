@@ -1,1 +1,24 @@
-<p>home works</p>
+<div class="split-screen-container">
+  <div class="split-screen-half">
+    <div class="split-content">
+      <a routerLink="/champion">
+        <div class="image-overlay-home"></div>
+        <img src="{{ championsImg }}" alt="Personagens" class="image-home" data-testid="champion-img" />
+        <div class="centered-text">
+          <h1 class="text-white" data-testid="champion-heading">Personagens</h1>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="split-screen-half">
+    <div class="split-content">
+      <a routerLink="/region">
+        <div class="image-overlay-home"></div>
+        <img src="{{ regionsImg }}" alt="Regiões" class="image-home" data-testid="region-img" />
+        <div class="centered-text">
+          <h1 class="text-white" data-testid="region-heading">Regiões</h1>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
