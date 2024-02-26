@@ -1,2 +1,121 @@
-<p>champion-details works!</p>
-<app-footer className="fixed-bottom"></app-footer>
+<div class="py-5">
+  <div *ngIf="loading; else details">
+    <div class="p-5 text-center">
+      <div class="spinner-border text-white" role="status">
+        <span class="visually-hidden">Carregando</span>
+      </div>
+    </div>
+  </div>
+  <ng-template #details>
+    <div class="p-5 text-white text-center">
+      <div *ngFor="let champion of championDetails">
+        <h1>{{ champion.name }}</h1>
+        <h2>{{ champion.title }}</h2>
+        <div *ngFor="let tag of champion.tags">
+          <span class="mx-1">
+            {{ tag }}
+          </span>
+        </div>
+        <img
+          [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'"
+          [alt]="champion.name"
+          class="img-fluid mt-2" />
+        <hr class="w-25 mx-auto my-5" />
+        <div class="w-75 mx-auto">
+          <h3>História</h3>
+          <div class="border p-4 bg-dark-blue">
+            <span>{{ champion.lore }}</span>
+          </div>
+        </div>
+        <hr class="w-25 mx-auto my-5" />
+        <div class="w-75 mx-auto">
+          <h3>Habilidades</h3>
+          <div class="border bg-dark-blue">
+            <div class="p-3">
+              <button class="border-0 p-0 mx-2 img-button bg-dark-blue" [ngClass]="{ active: skillState === 'P' }" (click)="setSkillState('P')">
+                <img
+                  [src]="'http://ddragon.leagueoflegends.com/cdn/14.4.1/img/passive/' + champion.passive.image.full"
+                  [alt]="champion.passive.name"
+                  class="button-img" />
+              </button>
+              <ng-container *ngFor="let spell of champion.spells; let i = index">
+                <button
+                  class="border-0 p-0 mx-2 img-button bg-dark-blue"
+                  [ngClass]="{ active: skillState === skillOrder[i] }"
+                  (click)="setSkillState(skillOrder[i])">
+                  <img [src]="'http://ddragon.leagueoflegends.com/cdn/14.4.1/img/spell/' + spell.image.full" [alt]="spell.name" class="button-img" />
+                </button>
+              </ng-container>
+            </div>
+            <hr class="m-0" />
+            <div *ngIf="skillVideos[champion.name]" class="p-3">
+              <video #championVideo [muted]="true" autoPlay loop width="60%" height="auto">
+                <source [src]="skillVideos[champion.name][skillState]" type="video/webm" />
+                Seu navegador não suporta o elemento de vídeo.
+              </video>
+            </div>
+            <div *ngIf="!skillVideos[champion.name]" class="p-3">
+              <div class="text-center imgStyle">
+                <div *ngIf="skillVideos['NoSkillVideo'] && skillVideos['NoSkillVideo']['IMG'] && skillVideos['NoSkillVideo']['IMG2']">
+                  <img [src]="skillVideos['NoSkillVideo']['IMG']" alt="No Skill Video" class="img-fluid" />
+                  <div class="img2Style">
+                    <img [src]="skillVideos['NoSkillVideo']['IMG2']" alt="No Skill Icon" class="img-fluid" />
+                    <p class="mt-2 fw-bold">Nenhum vídeo disponível para este campeão.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="m-0" />
+            <div *ngIf="skillState === 'P'" class="p-3">
+              <span>Passiva</span>
+              <h6>{{ champion.passive.name }}</h6>
+              <span>{{ champion.passive.description }}</span>
+            </div>
+            <ng-container *ngFor="let spell of champion.spells; let i = index">
+              <div *ngIf="skillState === skillOrder[i]" class="p-3">
+                <span>{{ skillOrder[i] }}</span>
+                <h6>{{ spell.name }}</h6>
+                <span>{{ spell.description }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <hr class="w-25 mx-auto my-5" />
+        <div class="w-75 mx-auto">
+          <h3>Skins</h3>
+          <div class="border bg-dark-blue">
+            <div class="p-2">
+              <ng-container *ngFor="let skin of champion.skins">
+                <button
+                  class="border-0 p-0 m-2 img-button bg-dark-blue"
+                  [ngClass]="{ active: skinState === skin.name }"
+                  (click)="setSkinState(skin.name)">
+                  <img
+                    [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_' + skin.num + '.jpg'"
+                    [alt]="skin.name"
+                    class="button-img" />
+                </button>
+              </ng-container>
+            </div>
+            <hr class="m-0" />
+            <div class="d-flex p-3">
+              <ng-container *ngFor="let skin of champion.skins">
+                <div *ngIf="skinState === skin.name" class="mx-auto">
+                  <h6>
+                    <span *ngIf="skin.name === 'default'">{{ champion.name }}</span>
+                    <span *ngIf="skin.name !== 'default'">{{ skin.name }}</span>
+                  </h6>
+                  <img
+                    class="img-fluid rounded"
+                    [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.name + '_' + skin.num + '.jpg'"
+                    [alt]="skin.name" />
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<app-footer></app-footer>
