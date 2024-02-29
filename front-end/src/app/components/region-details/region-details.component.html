@@ -1,2 +1,59 @@
-<p>region-details works!</p>
-<app-footer className="fixed-bottom"></app-footer>
+<div class="py-5 mx-5">
+  <div *ngIf="loading; else details">
+    <div class="p-5 text-center">
+      <div class="spinner-border text-white" role="status">
+        <span class="visually-hidden">Carregando</span>
+      </div>
+    </div>
+  </div>
+  <ng-template #details>
+    <div *ngIf="regionDetails" class="p-5 text-white text-center mx-5">
+      <div>
+        <div class="region-details-icon m-auto">
+          <img [src]="regionDetails.icon" [alt]="regionDetails.nameBR" class="img-fluid mt-2" />
+        </div>
+        <h1>{{ regionDetails.nameBR }}</h1>
+        <div class="region-details-video m-auto">
+          <div *ngIf="regionDetails.regionVideo">
+            <video [muted]="true" autoPlay loop width="100%" height="auto">
+              <source [src]="regionDetails.regionVideo" type="video/webm" />
+              Seu navegador não suporta o elemento de vídeo.
+            </video>
+          </div>
+          <div *ngIf="!regionDetails.regionVideo">
+            <img [src]="regionDetails.img" [alt]="regionDetails.nameBR" class="img-fluid mt-2" />
+          </div>
+        </div>
+      </div>
+      <hr class="w-25 mx-auto my-5" />
+      <div class="w-75 mx-auto">
+        <h3>Descrição</h3>
+        <div class="border p-4 bg-dark-blue">
+          <span>{{ regionDetails.description }}</span>
+        </div>
+      </div>
+      <hr class="w-25 mx-auto my-5" />
+      <div class="d-flex justify-content-center row mx-5">
+        <h3>Personagens</h3>
+        <div *ngFor="let champion of regionDetails.champions" class="mb-4 champion-cards">
+          <div class="rounded">
+            <div class="text-decoration-none" tabindex="0" (click)="navigateToChampion(champion)" (keydown.enter)="navigateToChampion(champion)">
+              <div class="card border-0 card-div">
+                <img
+                  [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + champion + '_0.jpg'"
+                  [alt]="champion"
+                  class="card-img-top img-fluid card-image" />
+                <div class="card-body p-0">
+                  <h5 class="card-title text-center pt-1 text-white">
+                    {{ champion }}
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<app-footer></app-footer>
