@@ -4,6 +4,7 @@ import { IChampion } from '../../interfaces/champion.interface';
 import { ChampionService } from '../../services/champion.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
   selector: 'app-champion',
@@ -19,6 +20,8 @@ export class ChampionComponent implements OnInit {
   filterTypes: string[] = [];
   showFavorites: boolean = false;
   favorites: string[] = [];
+  token: string = '';
+  isLoggedIn: boolean = false;
 
   championTypes = [
     { label: 'Todos', value: 'All' },
@@ -32,11 +35,18 @@ export class ChampionComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private championService: ChampionService
+    private championService: ChampionService,
+    private favoriteService: FavoriteService
   ) {}
 
   ngOnInit(): void {
+    if (typeof localStorage !== 'undefined') {
+      this.token = localStorage.getItem('token') || '';
+      this.isLoggedIn = !!localStorage.getItem('isLoggedIn')
+    }
+
     this.fetchChampions();
+    this.fetchFavorites(this.token);
   }
 
   fetchChampions(): void {
@@ -44,6 +54,14 @@ export class ChampionComponent implements OnInit {
       this.champions = Object.values(champions);
       this.loading = false;
     });
+  }
+
+  fetchFavorites(token: string) {
+    if (this.isLoggedIn && token) {
+      this.favoriteService.getFavorites(token).subscribe((favorites) => {
+        this.favorites = favorites;
+      });
+    }
   }
 
   handleSearch(event: Event): void {
@@ -89,10 +107,12 @@ export class ChampionComponent implements OnInit {
   }
 
   handleFavorite(championId: string): void {
-    if (localStorage.getItem('isLoggedIn')) {
+    if (this.isLoggedIn && this.token) {
       if (this.isFavorite(championId)) {
+        this.favoriteService.deleteFavorite(this.token, championId).subscribe();
         this.favorites = this.favorites.filter((id) => id !== championId);
       } else {
+        this.favoriteService.addFavorite(this.token, championId).subscribe();
         this.favorites.push(championId);
       }
     } else {
@@ -102,5 +122,6 @@ export class ChampionComponent implements OnInit {
 
   clearFavorites(): void {
     this.favorites = [];
+    this.favoriteService.clearFavorites(this.token).subscribe();
   }
 }
