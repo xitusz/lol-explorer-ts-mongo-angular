@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NgxCaptchaModule, ReCaptcha2Component } from 'ngx-captcha';
@@ -15,7 +15,7 @@ import { FavoriteService } from '../../services/favorite.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   @ViewChild('captchaElem') captchaElem: ReCaptcha2Component | undefined;
   loggingForm: FormGroup;
   error: string = '';
@@ -35,15 +35,6 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       recaptcha: [null, [Validators.required]],
     });
-  }
-
-  ngOnInit(): void {
-    if (typeof localStorage !== 'undefined') {
-      const isLoggedIn = localStorage.getItem('isLoggedIn');
-      if (isLoggedIn) {
-        this.navigateTo('');
-      }
-    }
   }
 
   onSubmit(): void {
