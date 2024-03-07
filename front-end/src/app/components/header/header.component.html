@@ -1,0 +1,38 @@
+<nav id="navbar" class="navbar navbar-expand-md navbar-dark fixed-top">
+  <div class="container py-2">
+    <div class="m-auto">
+      <button (click)="toggleCollapsed()" class="navbar-toggler" type="button" dataTestId="navlinks-button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div [ngClass]="{ collapse: collapsed, show: !collapsed }" class="navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="d-flex align-items-center nav-item">
+          <a class="nav-link p-0 mx-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Início</a>
+        </li>
+        <li class="d-flex align-items-center nav-item">
+          <a class="nav-link p-0 mx-2" routerLink="/champion" routerLinkActive="active">Personagens</a>
+        </li>
+        <li class="d-flex align-items-center nav-item">
+          <a class="nav-link p-0 mx-2" routerLink="/region" routerLinkActive="active">Regiões</a>
+        </li>
+      </ul>
+      <hr class="hr-header" />
+      <ul class="navbar-nav">
+        <li class="d-flex align-items-center nav-item">
+          <a *ngIf="loggedUser" class="nav-link p-0 mx-2" routerLink="/profile" routerLinkActive="active">Perfil</a>
+        </li>
+        <li class="d-flex align-items-center nav-item">
+          <a *ngIf="loggedUser" class="nav-link p-0 mx-2" (click)="handleExiting()" routerLink="/login">Sair</a>
+        </li>
+        <li class="d-flex align-items-center nav-item">
+          <a *ngIf="!loggedUser" class="nav-link p-0 mx-2" routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+        <li class="d-flex align-items-center nav-item">
+          <a *ngIf="!loggedUser" class="nav-link p-0 mx-2" routerLink="/register" routerLinkActive="active">Cadastro</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

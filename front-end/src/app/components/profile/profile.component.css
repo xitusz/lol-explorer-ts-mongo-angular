@@ -1,0 +1,65 @@
+.profile-div {
+  background-color: #1A242D;
+  box-shadow: 0 0 5px 1px white;
+  max-width: max-content;
+}
+
+.champion-card {
+  width: max-content;
+}
+
+.profile-container {
+  background-image: url(../../../assets/images/img.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.profile-container-height {
+  height: 100vh;
+}
+
+.card-div {
+  height: 20rem;
+  width: 15rem;
+  background-color: #1A242D;
+  transition: transform 0.3s ease-out, background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.3s ease-out;
+  overflow: hidden;
+}
+
+.card-div:hover {
+  transform: scale(1.05);
+  background-color: rgb(39 111 141);
+  box-shadow: 0 0 5px 1px white;
+  cursor: pointer;
+}
+
+.card-image {
+  object-fit: cover;
+  height: 89%;
+  object-position: center top;
+}
+
+.btn-primary {
+  border-color: rgb(39 111 141);
+  background-color: rgb(39 111 141);
+}
+
+.btn-primary:hover {
+  border-color: rgb(32, 90, 116);
+  background-color: rgb(32, 90, 116);
+}
+
+.btn-primary:active {
+  border-color: rgb(20, 60, 80) !important;
+  background-color: rgb(20, 60, 80) !important;
+}
+
+.icon {
+  cursor: pointer;
+  transition: transform 0.2s ease-out;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}

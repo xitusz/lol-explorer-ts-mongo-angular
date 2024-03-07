@@ -1,0 +1,49 @@
+<div class="py-5 region-container">
+  <h1 class="text-center text-white pt-5 p-4">Regiões</h1>
+  <div class="d-flex justify-content-center w-50 m-auto mb-3">
+    <div class="input-group mb-4 rounded-1">
+      <span class="input-group-text search-input border-0 text-white p-2 px-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+        </svg>
+      </span>
+      <input type="text" class="form-control search-input text-white border-0 p-0" placeholder="Buscar região" (input)="handleSearch($event)" />
+    </div>
+  </div>
+  <div *ngIf="loading; else regionsList">
+    <div class="p-5 text-center">
+      <div class="spinner-border text-white" role="status">
+        <span class="visually-hidden">Carregando</span>
+      </div>
+    </div>
+  </div>
+  <ng-template #regionsList>
+    <div *ngIf="sortedRegions().length > 0; else noRegionsFound" class="d-flex justify-content-center row mx-5">
+      <div *ngFor="let region of sortedRegions()" class="mb-4 region-card">
+        <div
+          class="text-decoration-none"
+          tabindex="0"
+          (click)="navigateToRegion(region.name)"
+          (keydown.enter)="navigateToRegion(region.nameBR)">
+          <div class="card border-0 card-region-div">
+            <div class="image-overlay"></div>
+            <img [src]="region.img" [alt]="region.nameBR" class="card-img-top img-fluid card-region-image" />
+            <div class="card-body p-0">
+              <h5 class="card-title text-center pt-1 text-white">
+                {{ region.nameBR }}
+              </h5>
+              <div *ngIf="region.icon" class="icon-overlay">
+                <img [src]="region.icon" [alt]="region.nameBR + ' Icon'" class="centered-icon" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #noRegionsFound>
+      <p class="text-center text-white py-5">Nenhuma região encontrada.</p>
+    </ng-template>
+  </ng-template>
+</div>
+<app-footer></app-footer>
