@@ -40,8 +40,12 @@ export class LoginComponent {
   onSubmit(): void {
     const { email, password, recaptcha } = this.loggingForm.value;
 
-    if (this.loggingForm.invalid) {
-      this.error = 'Preencha todos os campos.';
+    if (this.loggingForm.get('email')?.errors?.['required']) {
+      this.error = 'Email é obrigatório.';
+    } else if (this.loggingForm.get('email')?.errors?.['email']) {
+      this.error = 'Insira um email válido.';
+    } else if (this.loggingForm.get('password')?.errors?.['required']) {
+      this.error = 'Senha é obrigatória.';
     } else if (!recaptcha) {
       this.error = 'Captcha inválido';
     } else {
@@ -67,9 +71,7 @@ export class LoginComponent {
   }
 
   createFavorites(token: string): void {
-    this.favoriteService.create(token).subscribe({
-      next: () => {},
-    });
+    this.favoriteService.create(token).subscribe();
   }
 
   navigateTo(route: string): void {
