@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
 import { FavoriteService } from '../../services/favorite.service';
 import { IProfile } from '../../interfaces/profile.interface';
@@ -9,7 +9,7 @@ import { IProfile } from '../../interfaces/profile.interface';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [FooterComponent, CommonModule],
+  imports: [FooterComponent, CommonModule, RouterLink],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
