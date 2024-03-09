@@ -81,7 +81,7 @@ export class ProfileEditComponent implements OnInit {
     }
   }
 
-  fetchUserInfo() {
+  fetchUserInfo(): void {
     this.profileService.getProfile(this.token).subscribe((profile) => {
       this.profileInfo = profile;
     });
