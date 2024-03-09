@@ -22,12 +22,6 @@
             </div>
           </div>
           <div class="form-text mb-3">Seu nome deve ter no mínimo 2 caracteres.</div>
-          <div *ngIf="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched">
-            <div *ngIf="registrationForm.get('name')?.errors?.['required']" class="my-3 alert alert-danger text-center">Nome é obrigatório</div>
-            <div *ngIf="registrationForm.get('name')?.errors?.['minlength']" class="my-3 alert alert-danger text-center">
-              O nome deve ter pelo menos 2 caracteres
-            </div>
-          </div>
           <div class="input-group mb-2 input-div rounded-1">
             <span class="input-group-text form-input border-0 text-white p-2 px-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -46,10 +40,6 @@
             </div>
           </div>
           <div class="form-text mb-3">Seu email deve ser um email válido.</div>
-          <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
-            <div *ngIf="registrationForm.get('email')?.errors?.['required']" class="my-3 alert alert-danger text-center">Email é obrigatório</div>
-            <div *ngIf="registrationForm.get('email')?.errors?.['email']" class="my-3 alert alert-danger text-center">Insira um email válido</div>
-          </div>
           <div class="input-group mb-2 input-div rounded-1">
             <span class="input-group-text form-input border-0 text-white p-2 px-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
@@ -68,15 +58,6 @@
             </div>
           </div>
           <div class="form-text mb-3">Sua senha deve ter de 6 a 12 caracteres.</div>
-          <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
-            <div *ngIf="registrationForm.get('password')?.errors?.['required']" class="my-3 alert alert-danger text-center">Senha é obrigatória</div>
-            <div *ngIf="registrationForm.get('password')?.errors?.['minlength']" class="my-3 alert alert-danger text-center">
-              A senha deve ter de 6 a 12 caracteres
-            </div>
-            <div *ngIf="registrationForm.get('password')?.errors?.['maxlength']" class="my-3 alert alert-danger text-center">
-              A senha deve ter de 6 a 12 caracteres
-            </div>
-          </div>
           <div class="input-group mb-2 input-div rounded-1">
             <span class="input-group-text form-input border-0 text-white p-2 px-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
@@ -95,14 +76,6 @@
             </div>
           </div>
           <div class="form-text mb-3">Digite sua senha novamente.</div>
-          <div *ngIf="registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched">
-            <div *ngIf="registrationForm.get('confirmPassword')?.errors?.['required']" class="my-3 alert alert-danger text-center">
-              Confirmar senha é obrigatório
-            </div>
-            <div *ngIf="registrationForm.get('confirmPassword')?.errors?.['matching']" class="my-3 alert alert-danger text-center">
-              As senhas não são iguais.
-            </div>
-          </div>
           <div *ngIf="isBrowser" class="mb-2 d-flex justify-content-center">
             <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
           </div>
