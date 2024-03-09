@@ -3,7 +3,7 @@
     <div class="split-content">
       <a routerLink="/champion">
         <div class="image-overlay-home"></div>
-        <img src="{{ championsImg }}" alt="Personagens" class="image-home" data-testid="champion-img" />
+        <img [src]="championsImg" alt="Personagens" class="image-home" data-testid="champion-img" />
         <div class="centered-text">
           <h1 class="text-white" data-testid="champion-heading">Personagens</h1>
         </div>
@@ -14,7 +14,7 @@
     <div class="split-content">
       <a routerLink="/region">
         <div class="image-overlay-home"></div>
-        <img src="{{ regionsImg }}" alt="Regiões" class="image-home" data-testid="region-img" />
+        <img [src]="regionsImg" alt="Regiões" class="image-home" data-testid="region-img" />
         <div class="centered-text">
           <h1 class="text-white" data-testid="region-heading">Regiões</h1>
         </div>

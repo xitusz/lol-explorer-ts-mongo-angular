@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
 import { FavoriteService } from '../../services/favorite.service';
 import { IProfile } from '../../interfaces/profile.interface';
@@ -9,7 +9,7 @@ import { IProfile } from '../../interfaces/profile.interface';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [FooterComponent, CommonModule],
+  imports: [FooterComponent, CommonModule, RouterLink],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -35,19 +35,19 @@ export class ProfileComponent implements OnInit {
       this.isLoggedIn = !!localStorage.getItem('isLoggedIn');
     }
 
-    this.fetchUserInfo(this.token);
-    this.fetchFavorites(this.token);
+    this.fetchUserInfo();
+    this.fetchFavorites();
   }
 
-  fetchUserInfo(token: string) {
-    this.profileService.getProfile(token).subscribe((profile) => {
+  fetchUserInfo(): void {
+    this.profileService.getProfile(this.token).subscribe((profile) => {
       this.profileInfo = profile;
     });
   }
 
-  fetchFavorites(token: string) {
-    if (this.isLoggedIn && token) {
-      this.favoriteService.getFavorites(token).subscribe((favorites) => {
+  fetchFavorites(): void {
+    if (this.isLoggedIn && this.token) {
+      this.favoriteService.getFavorites(this.token).subscribe((favorites) => {
         this.favorites = favorites.sort();
       });
     }

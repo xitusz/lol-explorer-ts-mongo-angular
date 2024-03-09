@@ -42,11 +42,11 @@ export class ChampionComponent implements OnInit {
   ngOnInit(): void {
     if (typeof localStorage !== 'undefined') {
       this.token = localStorage.getItem('token') || '';
-      this.isLoggedIn = !!localStorage.getItem('isLoggedIn')
+      this.isLoggedIn = !!localStorage.getItem('isLoggedIn');
     }
 
     this.fetchChampions();
-    this.fetchFavorites(this.token);
+    this.fetchFavorites();
   }
 
   fetchChampions(): void {
@@ -56,9 +56,9 @@ export class ChampionComponent implements OnInit {
     });
   }
 
-  fetchFavorites(token: string) {
-    if (this.isLoggedIn && token) {
-      this.favoriteService.getFavorites(token).subscribe((favorites) => {
+  fetchFavorites(): void {
+    if (this.isLoggedIn && this.token) {
+      this.favoriteService.getFavorites(this.token).subscribe((favorites) => {
         this.favorites = favorites;
       });
     }
@@ -109,15 +109,23 @@ export class ChampionComponent implements OnInit {
   handleFavorite(championId: string): void {
     if (this.isLoggedIn && this.token) {
       if (this.isFavorite(championId)) {
-        this.favoriteService.deleteFavorite(this.token, championId).subscribe();
-        this.favorites = this.favorites.filter((id) => id !== championId);
+        this.handleRemoveFavorite(championId);
       } else {
-        this.favoriteService.addFavorite(this.token, championId).subscribe();
-        this.favorites.push(championId);
+        this.handleAddFavorite(championId);
       }
     } else {
       alert('Você precisa estar conectado para favoritar um campeão.');
     }
+  }
+
+  handleAddFavorite(championId: string): void {
+    this.favoriteService.addFavorite(this.token, championId).subscribe();
+    this.favorites.push(championId);
+  }
+
+  handleRemoveFavorite(championId: string): void {
+    this.favoriteService.deleteFavorite(this.token, championId).subscribe();
+    this.favorites = this.favorites.filter((id) => id !== championId);
   }
 
   clearFavorites(): void {

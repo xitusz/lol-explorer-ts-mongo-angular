@@ -54,7 +54,7 @@ export class ProfileEditComponent implements OnInit {
       this.token = localStorage.getItem('token') || '';
     }
 
-    this.fetchUserInfo(this.token);
+    this.fetchUserInfo();
   }
 
   onSubmit(): void {
@@ -81,8 +81,8 @@ export class ProfileEditComponent implements OnInit {
     }
   }
 
-  fetchUserInfo(token: string) {
-    this.profileService.getProfile(token).subscribe((profile) => {
+  fetchUserInfo(): void {
+    this.profileService.getProfile(this.token).subscribe((profile) => {
       this.profileInfo = profile;
     });
   }
@@ -110,15 +110,7 @@ export class ProfileEditComponent implements OnInit {
       if (this.editForm.get('email')?.errors?.['email']) {
         this.errorEmail = 'Insira um email válido.';
       } else if (email !== this.profileInfo.email) {
-        this.profileService.existingUser(email).subscribe((data) => {
-          if (data) {
-            this.errorEmail = 'Este email já está registrado.';
-          } else {
-            this.profileInfo.email = email;
-            this.showEditEmail = false;
-            this.errorEmail = '';
-          }
-        });
+        this.checkExistingUser(email);
       } else if (email == this.profileInfo.email) {
         this.profileInfo.email = email;
         this.showEditEmail = false;
@@ -128,6 +120,18 @@ export class ProfileEditComponent implements OnInit {
       this.errorEmail = '';
       this.showEditEmail = false;
     }
+  }
+
+  checkExistingUser(email: string): void {
+    this.profileService.existingUser(email).subscribe((data) => {
+      if (data) {
+        this.errorEmail = 'Este email já está registrado.';
+      } else {
+        this.profileInfo.email = email;
+        this.showEditEmail = false;
+        this.errorEmail = '';
+      }
+    });
   }
 
   handleSavePassword(): void {

@@ -1,22 +1,16 @@
-.profile-div {
-  background-color: #1A242D;
-  box-shadow: 0 0 5px 1px white;
-  max-width: max-content;
+.btn-primary {
+  border-color: rgb(39 111 141);
+  background-color: rgb(39 111 141);
 }
 
-.champion-card {
-  width: max-content;
+.btn-primary:active {
+  border-color: rgb(20, 60, 80) !important;
+  background-color: rgb(20, 60, 80) !important;
 }
 
-.profile-container {
-  background-image: url(../../../assets/images/img.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-}
-
-.profile-container-height {
-  height: 100vh;
+.btn-primary:hover {
+  border-color: rgb(32, 90, 116);
+  background-color: rgb(32, 90, 116);
 }
 
 .card-div {
@@ -40,19 +34,8 @@
   object-position: center top;
 }
 
-.btn-primary {
-  border-color: rgb(39 111 141);
-  background-color: rgb(39 111 141);
-}
-
-.btn-primary:hover {
-  border-color: rgb(32, 90, 116);
-  background-color: rgb(32, 90, 116);
-}
-
-.btn-primary:active {
-  border-color: rgb(20, 60, 80) !important;
-  background-color: rgb(20, 60, 80) !important;
+.champion-card {
+  width: max-content;
 }
 
 .icon {
@@ -62,4 +45,21 @@
 
 .icon:hover {
   transform: scale(1.2);
+}
+
+.profile-container {
+  background-image: url(../../../assets/images/img.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.profile-container-height {
+  height: 100vh;
+}
+
+.profile-div {
+  background-color: #1A242D;
+  box-shadow: 0 0 5px 1px white;
+  max-width: max-content;
 }

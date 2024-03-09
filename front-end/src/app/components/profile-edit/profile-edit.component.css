@@ -1,12 +1,3 @@
-.icon-setting {
-  margin-left: 10px;
-}
-
-.active-icon {
-  color: rgb(39 111 141) !important;
-  transition: color 0.2s ease-out;
-}
-
 .active-edit {
   color: rgb(39 111 141) !important;
   transition: color 0.2s ease-out;
@@ -18,43 +9,7 @@
   transition: color 0.2s ease-out;
 }
 
-.profile-edit-container {
-  background-image: url(../../../assets/images/img.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-}
-
-.form-field {
-  background-color: #1A242D;
-}
-
-.input-div {
-  box-shadow: 0 0 5px 1px white;
-}
-
-.form-input {
-  background-color: #1A242D !important;
-}
-
-.form-input::placeholder, .form-text {
-  color: #8A90A2 !important;
-}
-
-.form-input:focus {
-  box-shadow: none;
-}
-
-.input-group {
-  transition: box-shadow 0.2s ease-out;
-}
-
-.input-group:focus-within {
-  box-shadow: 0 0 5px 1px rgb(39 111 141);
-  outline: 0;
-}
-
-.input-group:focus-within .input-group-text {
+.active-icon {
   color: rgb(39 111 141) !important;
   transition: color 0.2s ease-out;
 }
@@ -74,6 +29,22 @@
   background-color: rgb(20, 60, 80) !important;
 }
 
+.form-field {
+  background-color: #1A242D;
+}
+
+.form-input {
+  background-color: #1A242D !important;
+}
+
+.form-input:focus {
+  box-shadow: none;
+}
+
+.form-input::placeholder, .form-text {
+  color: #8A90A2 !important;
+}
+
 .icon {
   cursor: pointer;
   transition: transform 0.2s ease-out;
@@ -81,4 +52,33 @@
 
 .icon:hover {
   transform: scale(1.2);
+}
+
+.icon-setting {
+  margin-left: 10px;
+}
+
+.input-div {
+  box-shadow: 0 0 5px 1px white;
+}
+
+.input-group {
+  transition: box-shadow 0.2s ease-out;
+}
+
+.input-group:focus-within .input-group-text {
+  color: rgb(39 111 141) !important;
+  transition: color 0.2s ease-out;
+}
+
+.input-group:focus-within {
+  box-shadow: 0 0 5px 1px rgb(39 111 141);
+  outline: 0;
+}
+
+.profile-edit-container {
+  background-image: url(../../../assets/images/img.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
