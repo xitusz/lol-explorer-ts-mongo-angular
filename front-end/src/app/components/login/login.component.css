@@ -1,21 +1,36 @@
-.form-field {
-  background-color: #1A242D;
+.btn-primary {
+  border-color: rgb(39 111 141);
+  background-color: rgb(39 111 141);
 }
 
-.input-div {
-  box-shadow: 0 0 5px 1px white;
+.btn-primary:hover {
+  border-color: rgb(32, 90, 116);
+  background-color: rgb(32, 90, 116);
+}
+
+.btn-primary:active {
+  border-color: rgb(20, 60, 80) !important;
+  background-color: rgb(20, 60, 80) !important;
+}
+
+.form-field {
+  background-color: #1A242D;
 }
 
 .form-input {
   background-color: #1A242D !important;
 }
 
+.form-input:focus {
+  box-shadow: none;
+}
+
 .form-input::placeholder {
   color: #8A90A2 !important;
 }
 
-.form-input:focus {
-  box-shadow: none;
+.input-div {
+  box-shadow: 0 0 5px 1px white;
 }
 
 .input-group {
@@ -30,21 +45,6 @@
 .input-group:focus-within .input-group-text {
   color: rgb(39 111 141) !important;
   transition: color 0.2s ease-out;
-}
-
-.btn-primary {
-  border-color: rgb(39 111 141);
-  background-color: rgb(39 111 141);
-}
-
-.btn-primary:hover {
-  border-color: rgb(32, 90, 116);
-  background-color: rgb(32, 90, 116);
-}
-
-.btn-primary:active {
-  border-color: rgb(20, 60, 80) !important;
-  background-color: rgb(20, 60, 80) !important;
 }
 
 .login-container {
