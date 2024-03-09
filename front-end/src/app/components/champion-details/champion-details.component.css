@@ -1,6 +1,5 @@
-.img-button {
-  background-color: #0F1923;
-  transition: transform 0.2s ease-out;
+.bg-dark-blue {
+  background-color: #1A242D;
 }
 
 .button-img {
@@ -9,12 +8,6 @@
   border-radius: 50%;
   object-fit: cover;
   transition: border-radius 0.3s ease-out, box-shadow 0.2s ease-out;
-}
-
-.img-button.active .button-img {
-  transform: scale(1.1);
-  border-radius: 25%;
-  box-shadow: 0 0 5px 1px white;
 }
 
 .button-img:hover {
@@ -33,6 +26,13 @@
   transform: translate(-50%, -50%);
 }
 
-.bg-dark-blue {
-  background-color: #1A242D;
+.img-button {
+  background-color: #0F1923;
+  transition: transform 0.2s ease-out;
+}
+
+.img-button.active .button-img {
+  transform: scale(1.1);
+  border-radius: 25%;
+  box-shadow: 0 0 5px 1px white;
 }
