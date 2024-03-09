@@ -23,10 +23,8 @@ export class HeaderComponent implements OnInit {
   }
 
   handleExiting(): void {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.removeItem('token');
-      localStorage.removeItem('isLoggedIn');
-    }
+    localStorage.removeItem('token');
+    localStorage.removeItem('isLoggedIn');
     this.loggedUser = false;
     this.router.navigate(['/login']);
   }
