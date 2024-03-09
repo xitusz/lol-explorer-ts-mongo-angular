@@ -1,15 +1,3 @@
-.region-details-icon {
-  width: 4rem;
-}
-
-.region-details-video {
-  width: 80%;
-}
-
-.champion-cards {
-  width: max-content;
-}
-
 .bg-dark-blue {
   background-color: #1A242D;
 }
@@ -33,4 +21,16 @@
   object-fit: cover;
   height: 89%;
   object-position: center top;
+}
+
+.champion-cards {
+  width: max-content;
+}
+
+.region-details-icon {
+  width: 4rem;
+}
+
+.region-details-video {
+  width: 80%;
 }
