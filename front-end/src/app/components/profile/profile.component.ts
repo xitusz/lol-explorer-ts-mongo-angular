@@ -35,19 +35,19 @@ export class ProfileComponent implements OnInit {
       this.isLoggedIn = !!localStorage.getItem('isLoggedIn');
     }
 
-    this.fetchUserInfo(this.token);
-    this.fetchFavorites(this.token);
+    this.fetchUserInfo();
+    this.fetchFavorites();
   }
 
-  fetchUserInfo(token: string) {
-    this.profileService.getProfile(token).subscribe((profile) => {
+  fetchUserInfo(): void {
+    this.profileService.getProfile(this.token).subscribe((profile) => {
       this.profileInfo = profile;
     });
   }
 
-  fetchFavorites(token: string) {
-    if (this.isLoggedIn && token) {
-      this.favoriteService.getFavorites(token).subscribe((favorites) => {
+  fetchFavorites(): void {
+    if (this.isLoggedIn && this.token) {
+      this.favoriteService.getFavorites(this.token).subscribe((favorites) => {
         this.favorites = favorites.sort();
       });
     }
