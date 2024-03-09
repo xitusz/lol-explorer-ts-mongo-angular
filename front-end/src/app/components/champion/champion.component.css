@@ -23,24 +23,15 @@
   width: max-content;
 }
 
-.filter-button {
+.champion-container {
+  background-image: url(../../../assets/images/champions2.png);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.favorite-div {
   background-color: #1A242D;
-  transition: background-color 0.2s ease-out, box-shadow 0,2s ease-out;
-}
-
-.filter-button:hover, .filter-button.active:hover  {
-  background-color: rgb(32, 90, 116);
-}
-
-.filter-button:active, .filter-button.active:active  {
-  background-color: rgb(20, 60, 80);
-}
-
-.filter-button.active {
-  background-color: rgb(39 111 141);
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 0 5px 1px white;
 }
 
 .favorite-icon {
@@ -54,27 +45,24 @@
   cursor: pointer;
 }
 
-.favorite-div {
+.filter-button {
   background-color: #1A242D;
+  transition: background-color 0.2s ease-out, box-shadow 0,2s ease-out;
 }
 
-.champion-container {
-  background-image: url(../../../assets/images/champions2.png);
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+.filter-button:active, .filter-button.active:active  {
+  background-color: rgb(20, 60, 80);
 }
 
-.search-input {
-  background-color: #1A242D !important;
+.filter-button.active {
+  background-color: rgb(39 111 141);
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 0 5px 1px white;
 }
 
-.search-input::placeholder {
-  color: #8A90A2;
-}
-
-.search-input:focus {
-  box-shadow: none;
+.filter-button:hover, .filter-button.active:hover  {
+  background-color: rgb(32, 90, 116);
 }
 
 .input-group {
@@ -89,4 +77,16 @@
 .input-group:focus-within .input-group-text {
   color: rgb(39 111 141) !important;
   transition: color 0.2s ease-out;
+}
+
+.search-input {
+  background-color: #1A242D !important;
+}
+
+.search-input:focus {
+  box-shadow: none;
+}
+
+.search-input::placeholder {
+  color: #8A90A2;
 }
