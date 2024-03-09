@@ -21,10 +21,6 @@
                 required />
             </div>
           </div>
-          <div *ngIf="loggingForm.get('email')?.invalid && loggingForm.get('email')?.touched">
-            <div *ngIf="loggingForm.get('email')?.errors?.['required']" class="my-3 alert alert-danger text-center">Email é obrigatório</div>
-            <div *ngIf="loggingForm.get('email')?.errors?.['email']" class="my-3 alert alert-danger text-center">Insira um email válido</div>
-          </div>
           <div class="input-group mb-3 input-div rounded-1">
             <span class="input-group-text form-input border-0 text-white p-2 px-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
@@ -41,9 +37,6 @@
                 placeholder="*********"
                 required />
             </div>
-          </div>
-          <div *ngIf="loggingForm.get('password')?.invalid && loggingForm.get('password')?.touched">
-            <div *ngIf="loggingForm.get('password')?.errors?.['required']" class="my-3 alert alert-danger text-center">Senha é obrigatória</div>
           </div>
           <div *ngIf="isBrowser" class="mb-2 d-flex justify-content-center">
             <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
