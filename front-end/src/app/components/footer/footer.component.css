@@ -2,16 +2,6 @@
   background-color: #1A242D;
 }
 
-.text-footer, .a-footer {
-  color: #8A90A2;
-  text-decoration: none;
-}
-
-.a-footer:hover {
-  color: white;
-  text-decoration: underline;
-}
-
 .arrow-div {
   position: fixed;
   bottom: 3%;
@@ -23,10 +13,20 @@
   transition: transform 0.2s ease-out;
 }
 
-.icon:hover, .arrow-icon:hover {
-  transform: scale(1.2);
+.a-footer:hover {
+  color: white;
+  text-decoration: underline;
 }
 
 .hr-footer {
   color: white;
+}
+
+.icon:hover, .arrow-icon:hover {
+  transform: scale(1.2);
+}
+
+.text-footer, .a-footer {
+  color: #8A90A2;
+  text-decoration: none;
 }
