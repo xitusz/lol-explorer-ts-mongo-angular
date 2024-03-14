@@ -24,10 +24,6 @@ describe('ChampionComponent', () => {
     router = TestBed.inject(Router);
   });
 
-  afterEach(() => {
-    TestBed.resetTestingModule();
-  });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
