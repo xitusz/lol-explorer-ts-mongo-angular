@@ -2,6 +2,8 @@
 
 [LoL Explorer - JS, MySQL, React](https://github.com/xitusz/lol-explorer-js-mysql-react)
 
+[LoL Explorer - TS, Mongo, Vue](https://github.com/xitusz/lol-explorer-ts-mongo-vue)
+
 ---
 
 ## Sumário
@@ -32,15 +34,20 @@
 - Angular
 - Bootstrap
 - Google Recaptcha
-- Node.js
-- Express.js
+- Node
+- Express
 - Sequelize
 - MySQL2
 - Bcrypt
+- Axios
 - Jwt
+- Jasmine
 - Mocha
 - Chai
 - Sinon
+- Eslint
+- Prettier
+- Stylelint
 
 ---
 
@@ -137,7 +144,7 @@ Diagrama do banco de dados
 ## Configuração do Ambiente
 
 - Antes de iniciar o frontend e o backend, certifique-se de criar e preencher o arquivo de environment:
-  - frontend: environment.ts seguindo o exemplo fornecido em environment.example.ts
+  - frontend: environment.ts e environment.development.ts seguindo o exemplo fornecido em environment.example.ts
   - backend: .env seguindo o exemplo fornecido em .env.example.
 
 - Antes de iniciar o backend, é necessário criar uma chave JWT para autenticação. Crie o arquivo jwt.evaluation.key na raiz do backend com uma chave
