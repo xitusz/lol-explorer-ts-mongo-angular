@@ -16,23 +16,28 @@ if (config.use_env_variable) {
     config.database,
     config.username,
     config.password,
-    config
+    config,
   );
 }
+
+const fileExtension = __filename.endsWith(".ts") ? ".ts" : ".js";
+const testFileExtension = __filename.endsWith(".test.ts")
+  ? ".test.ts"
+  : ".test.js";
 
 fs.readdirSync(__dirname)
   .filter((file: string) => {
     return (
       file.indexOf(".") !== 0 &&
       file !== basename &&
-      file.slice(-3) === ".ts" &&
-      file.indexOf(".test.ts") === -1
+      file.slice(-3) === fileExtension &&
+      file.indexOf(testFileExtension) === -1
     );
   })
   .forEach((file: any) => {
     const model = require(path.join(__dirname, file))(
       sequelize,
-      Sequelize.DataTypes
+      Sequelize.DataTypes,
     );
     db[model.name] = model;
   });
