@@ -72,16 +72,50 @@ describe('ChampionComponent', () => {
 
   // it('should show an alert when attempting to favorite a champion while user not logged in, and the champion remains unfavorited', () => {});
 
-  /*describe('Filter champions', () => {
+  describe('Filter champions', () => {
     describe('Input search', () => {
-      it('should render the input search correctly', () => {});
+      it('should render the input search correctly', () => {
+        const input = fixture.nativeElement.querySelector('input');
+        expect(input).toBeTruthy();
+      });
 
-      it('should filter according to the text in the input', () => {});
+      it('should filter according to the text in the input', () => {
+        const mock = {
+          Aatrox: { id: 'Aatrox', name: 'Aatrox' },
+          Ahri: { id: 'Ahri', name: 'Ahri' },
+        };
 
-      it("should render the message 'Nenhum campeão encontrado.' correctly", () => {});
+        spyOn(service, 'getChampions').and.returnValue(of(Object.values(mock) as IChampion[]));
+
+        component.searchChampion = 'Aatrox';
+
+        fixture.detectChanges();
+
+        const championsList = fixture.nativeElement.querySelectorAll('.champion-card');
+
+        expect(championsList.length).toBe(1);
+      });
+
+      it("should render the message 'Nenhum campeão encontrado.' correctly", () => {
+        const mock = {
+          Aatrox: { id: 'Aatrox', name: 'Aatrox' },
+          Ahri: { id: 'Ahri', name: 'Ahri' },
+        };
+
+        spyOn(service, 'getChampions').and.returnValue(of(Object.values(mock) as IChampion[]));
+
+        component.searchChampion = 'zzz';
+
+        fixture.detectChanges();
+
+        const championsList = fixture.nativeElement.querySelectorAll('.champion-card');
+
+        expect(championsList.length).toBe(0);
+        expect(fixture.nativeElement.textContent).toContain('Nenhum campeão encontrado.');
+      });
     });
 
-    describe('Filter Button', () => {
+    /*describe('Filter Button', () => {
       it('should render the buttons correctly', () => {});
 
       it("should correctly activate the 'Todos' button and deactivate the other filter buttons", () => {});
@@ -111,6 +145,6 @@ describe('ChampionComponent', () => {
 
         it("button 'Limpar Favoritos'", () => {});
       });
-    });
-  });*/
+    });*/
+  });
 });
