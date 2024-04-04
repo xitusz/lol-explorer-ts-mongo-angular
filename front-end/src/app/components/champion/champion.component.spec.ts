@@ -66,7 +66,17 @@ describe('ChampionComponent', () => {
     expect(router.navigateByUrl).toHaveBeenCalledWith(jasmine.stringMatching('/champion/Aatrox'), { skipLocationChange: false });
   });
 
-  // it('should render the loading message correctly', () => {});
+  it('should render the loading message correctly', () => {
+    component.loading = true;
+
+    fixture.detectChanges();
+
+    const loading = fixture.nativeElement.querySelector('.spinner-border');
+
+    expect(loading).toBeTruthy();
+    expect(loading.getAttribute('role')).toBe('status');
+    expect(fixture.nativeElement.textContent).toContain('Carregando');
+  });
 
   // it('should favorite when clicking on the star icon if it is unfavorited and unfavorite if it is favorited while user logged in', () => {});
 
