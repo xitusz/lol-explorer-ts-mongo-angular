@@ -78,9 +78,55 @@ describe('ChampionComponent', () => {
     expect(fixture.nativeElement.textContent).toContain('Carregando');
   });
 
-  // it('should favorite when clicking on the star icon if it is unfavorited and unfavorite if it is favorited while user logged in', () => {});
+  it('should favorite when clicking on the star icon if it is unfavorited and unfavorite if it is favorited while user logged in', () => {
+    localStorage.setItem('isLoggedIn', JSON.stringify(true));
+    localStorage.setItem('token', 'token');
 
-  // it('should show an alert when attempting to favorite a champion while user not logged in, and the champion remains unfavorited', () => {});
+    const mock = {
+      Aatrox: { id: 'Aatrox', name: 'Aatrox' },
+      Ahri: { id: 'Ahri', name: 'Ahri' },
+    };
+
+    spyOn(service, 'getChampions').and.returnValue(of(Object.values(mock) as IChampion[]));
+    spyOn(window, 'alert');
+
+    fixture.detectChanges();
+
+    const favIcon = fixture.nativeElement.querySelectorAll('.favorite-icon');
+
+    favIcon[0].click();
+    favIcon[1].click();
+
+    fixture.detectChanges();
+
+    expect(window.alert).not.toHaveBeenCalledWith('Você precisa estar conectado para favoritar um campeão.');
+    expect(component.favorites).toEqual(['Aatrox', 'Ahri']);
+
+    localStorage.clear();
+  });
+
+  it('should show an alert when attempting to favorite a champion while user not logged in, and the champion remains unfavorited', () => {
+    localStorage.clear();
+
+    const mock = {
+      Aatrox: { id: 'Aatrox', name: 'Aatrox' },
+      Ahri: { id: 'Ahri', name: 'Ahri' },
+    };
+
+    spyOn(service, 'getChampions').and.returnValue(of(Object.values(mock) as IChampion[]));
+    spyOn(window, 'alert');
+
+    fixture.detectChanges();
+
+    const favIcon = fixture.nativeElement.querySelectorAll('.favorite-icon');
+
+    favIcon[0].click();
+
+    fixture.detectChanges();
+
+    expect(window.alert).toHaveBeenCalledWith('Você precisa estar conectado para favoritar um campeão.');
+    expect(component.favorites.length).toBe(0);
+  });
 
   describe('Filter champions', () => {
     describe('Input search', () => {
