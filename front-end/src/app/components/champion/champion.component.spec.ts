@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { ChampionComponent } from './champion.component';
 import { ChampionService } from '../../services/champion.service';
 import { IChampion } from '../../interfaces/champion.interface';
-import { Router } from '@angular/router';
 
 describe('ChampionComponent', () => {
   let component: ChampionComponent;
