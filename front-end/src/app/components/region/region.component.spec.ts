@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { RegionComponent } from './region.component';
 import { RegionService } from '../../services/region.service';
-import { Router } from '@angular/router';
 
 describe('RegionComponent', () => {
   let component: RegionComponent;
