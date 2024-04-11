@@ -13,7 +13,6 @@ describe('FooterComponent', () => {
 
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -26,19 +25,43 @@ describe('FooterComponent', () => {
     it('should scroll to the top when the arrow icon is clicked.', () => {});
   });*/
 
-  /*describe('contact icons', () => {
-    it('should render the LinkedIn icon', () => {});
+  describe('contact icons', () => {
+    it('should render the LinkedIn icon', () => {
+      const linkedinIcon = fixture.nativeElement.querySelector('.bi-linkedin');
 
-    it('should render the LinkedIn link', () => {});
+      expect(linkedinIcon).toBeTruthy();
+    });
 
-    it('should render the Gmail icon', () => {});
+    it('should render the LinkedIn link', () => {
+      const linkedinLink = fixture.nativeElement.querySelector('[data-testid="linkedin-link"]');
 
-    it('should render the Gmail link', () => {});
+      expect(linkedinLink.getAttribute('href')).toContain('https://www.linkedin.com/in/gabrielalves1/');
+    });
 
-    it('should render the Github icon', () => {});
+    it('should render the Gmail icon', () => {
+      const gmailIcon = fixture.nativeElement.querySelector('.bi-envelope');
 
-    it('should render the Github link', () => {});
-  });*/
+      expect(gmailIcon).toBeTruthy();
+    });
+
+    it('should render the Gmail link', () => {
+      const gmailLink = fixture.nativeElement.querySelector('[data-testid="gmail-link"]');
+
+      expect(gmailLink.getAttribute('href')).toContain('mailto:2kgabrielalves@gmail.com');
+    });
+
+    it('should render the Github icon', () => {
+      const gitHubIcon = fixture.nativeElement.querySelector('.bi-github');
+
+      expect(gitHubIcon).toBeTruthy();
+    });
+
+    it('should render the Github link', () => {
+      const gitHubLink = fixture.nativeElement.querySelector('[data-testid="github-link"]');
+
+      expect(gitHubLink.getAttribute('href')).toContain('https://github.com/xitusz');
+    });
+  });
 
   /*describe('copyright message', () => {
     it('should render the copyright message', () => {});
