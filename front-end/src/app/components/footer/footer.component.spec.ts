@@ -63,9 +63,15 @@ describe('FooterComponent', () => {
     });
   });
 
-  /*describe('copyright message', () => {
-    it('should render the copyright message', () => {});
+  describe('copyright message', () => {
+    it('should render the copyright message', () => {
+      expect(fixture.nativeElement.textContent).toContain('© 2023 Gabriel Alves . All Rights Reserved.');
+    });
 
-    it("should render 'gabriel alves' with a link to the GitHub profile", () => {});
-  });*/
+    it("should render 'gabriel alves' with a link to the GitHub profile", () => {
+      const githubLink = fixture.nativeElement.querySelector('.a-footer');
+
+      expect(githubLink.getAttribute('href')).toBe('https://github.com/xitusz');
+    });
+  });
 });
