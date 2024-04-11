@@ -12,19 +12,19 @@
         <h1>{{ champion.name }}</h1>
         <h2>{{ champion.title }}</h2>
         <div *ngFor="let tag of champion.tags">
-          <span class="mx-1">
+          <span class="mx-1 champion-tag">
             {{ tag }}
           </span>
         </div>
         <img
           [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'"
           [alt]="champion.name"
-          class="img-fluid mt-2" />
+          class="img-fluid mt-2 champion-image" />
         <hr class="w-25 mx-auto my-5" />
         <div class="w-75 mx-auto">
           <h3>História</h3>
           <div class="border p-4 bg-dark-blue">
-            <span>{{ champion.lore }}</span>
+            <span class="champion-lore">{{ champion.lore }}</span>
           </div>
         </div>
         <hr class="w-25 mx-auto my-5" />
@@ -32,7 +32,7 @@
           <h3>Habilidades</h3>
           <div class="border bg-dark-blue">
             <div class="p-3">
-              <button class="border-0 p-0 mx-2 img-button bg-dark-blue" [ngClass]="{ active: skillState === 'P' }" (click)="setSkillState('P')">
+              <button class="border-0 p-0 mx-2 img-button bg-dark-blue btn-spell" [ngClass]="{ active: skillState === 'P' }" (click)="setSkillState('P')">
                 <img
                   [src]="'http://ddragon.leagueoflegends.com/cdn/14.4.1/img/passive/' + champion.passive.image.full"
                   [alt]="champion.passive.name"
@@ -40,7 +40,7 @@
               </button>
               <ng-container *ngFor="let spell of champion.spells; let i = index">
                 <button
-                  class="border-0 p-0 mx-2 img-button bg-dark-blue"
+                  class="border-0 p-0 mx-2 img-button bg-dark-blue btn-spell"
                   [ngClass]="{ active: skillState === skillOrder[i] }"
                   (click)="setSkillState(skillOrder[i])">
                   <img [src]="'http://ddragon.leagueoflegends.com/cdn/14.4.1/img/spell/' + spell.image.full" [alt]="spell.name" class="button-img" />
@@ -67,13 +67,13 @@
             </div>
             <hr class="m-0" />
             <div *ngIf="skillState === 'P'" class="p-3">
-              <span>Passiva</span>
+              <span class="skill-order">Passiva</span>
               <h6>{{ champion.passive.name }}</h6>
               <span>{{ champion.passive.description }}</span>
             </div>
             <ng-container *ngFor="let spell of champion.spells; let i = index">
               <div *ngIf="skillState === skillOrder[i]" class="p-3">
-                <span>{{ skillOrder[i] }}</span>
+                <span class="skill-order">{{ skillOrder[i] }}</span>
                 <h6>{{ spell.name }}</h6>
                 <span>{{ spell.description }}</span>
               </div>
@@ -87,7 +87,7 @@
             <div class="p-2">
               <ng-container *ngFor="let skin of champion.skins">
                 <button
-                  class="border-0 p-0 m-2 img-button bg-dark-blue"
+                  class="border-0 p-0 m-2 img-button bg-dark-blue btn-skin"
                   [ngClass]="{ active: skinState === skin.name }"
                   (click)="setSkinState(skin.name)">
                   <img
@@ -106,7 +106,7 @@
                     <span *ngIf="skin.name !== 'default'">{{ skin.name }}</span>
                   </h6>
                   <img
-                    class="img-fluid rounded"
+                    class="img-fluid rounded skin-img"
                     [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.name + '_' + skin.num + '.jpg'"
                     [alt]="skin.name" />
                 </div>
