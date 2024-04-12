@@ -20,13 +20,23 @@ describe('FooterComponent', () => {
   });
 
   describe('back to the top icon', () => {
-    it('should render the back to the top icon', async() => {
+    it('should render the back to the top icon', async () => {
       const arrowIcon = fixture.nativeElement.querySelector('.arrow-icon');
 
       expect(arrowIcon).toBeTruthy();
     });
 
-    // it('should scroll to the top when the arrow icon is clicked.', () => {});
+    it('should scroll to the top when the arrow icon is clicked.', () => {
+      const scrollTo = spyOn(window, 'scrollTo');
+
+      const arrowIcon = fixture.nativeElement.querySelector('.arrow-icon');
+
+      arrowIcon.dispatchEvent(new Event('click'));
+
+      fixture.detectChanges();
+
+      expect(scrollTo).toHaveBeenCalled();
+    });
   });
 
   describe('contact icons', () => {
