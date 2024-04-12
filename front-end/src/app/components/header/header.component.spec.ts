@@ -133,15 +133,76 @@ describe('HeaderComponent', () => {
     });
   });
 
-  /*describe('navigation', () => {
-    it('should renders correctly', () => {});
+  describe('navigation', () => {
+    it('should renders correctly', () => {
+      fixture.detectChanges();
 
-    it('should redirect to home page when home button is clicked', () => {});
+      const homeButton = fixture.nativeElement.querySelector('.home-button');
+      const championButton = fixture.nativeElement.querySelector('.champion-button');
+      const regionButton = fixture.nativeElement.querySelector('.region-button');
 
-    it('should redirect to champion page when champion button is clicked', () => {});
+      expect(homeButton).toBeTruthy();
+      expect(championButton).toBeTruthy();
+      expect(regionButton).toBeTruthy();
+    });
 
-    it('should redirect to region page when region button is clicked', () => {});
+    it('should redirect to home page when home button is clicked', () => {
+      spyOn(router, 'navigateByUrl');
 
-    it('should render display button on small screens', () => {});
-  });*/
+      fixture.detectChanges();
+
+      const homeButton = fixture.nativeElement.querySelector('.home-button');
+
+      homeButton.click();
+
+      fixture.detectChanges();
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith(jasmine.stringMatching('/'), {
+        skipLocationChange: false,
+        replaceUrl: false,
+        state: undefined,
+        info: undefined,
+      });
+    });
+
+    it('should redirect to champion page when champion button is clicked', () => {
+      spyOn(router, 'navigateByUrl');
+
+      fixture.detectChanges();
+
+      const championButton = fixture.nativeElement.querySelector('.champion-button');
+
+      championButton.click();
+
+      fixture.detectChanges();
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith(jasmine.stringMatching('/champion'), {
+        skipLocationChange: false,
+        replaceUrl: false,
+        state: undefined,
+        info: undefined,
+      });
+    });
+
+    it('should redirect to region page when region button is clicked', () => {
+      spyOn(router, 'navigateByUrl');
+
+      fixture.detectChanges();
+
+      const regionButton = fixture.nativeElement.querySelector('.region-button');
+
+      regionButton.click();
+
+      fixture.detectChanges();
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith(jasmine.stringMatching('/region'), {
+        skipLocationChange: false,
+        replaceUrl: false,
+        state: undefined,
+        info: undefined,
+      });
+    });
+
+    // it('should render display button on small screens', () => {});
+  });
 });
