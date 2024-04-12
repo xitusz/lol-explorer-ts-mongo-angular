@@ -19,11 +19,15 @@ describe('FooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  /*describe('back to the top icon', () => {
-    it('should render the back to the top icon', () => {});
+  describe('back to the top icon', () => {
+    it('should render the back to the top icon', async() => {
+      const arrowIcon = fixture.nativeElement.querySelector('.arrow-icon');
 
-    it('should scroll to the top when the arrow icon is clicked.', () => {});
-  });*/
+      expect(arrowIcon).toBeTruthy();
+    });
+
+    // it('should scroll to the top when the arrow icon is clicked.', () => {});
+  });
 
   describe('contact icons', () => {
     it('should render the LinkedIn icon', () => {
