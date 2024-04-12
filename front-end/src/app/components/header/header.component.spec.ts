@@ -78,13 +78,60 @@ describe('HeaderComponent', () => {
     });
   });
 
-  /*describe('when user is logged in', () => {
-    it('should render profile and exit buttons', () => {});
+  describe('when user is logged in', () => {
+    beforeEach(() => {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('token', 'token');
+    });
 
-    it('should redirect to profile page when profile button is clicked', () => {});
+    it('should render profile and exit buttons', () => {
+      fixture.detectChanges();
 
-    it('should clear token and isLoggedIn in localStorage and redirect to login page when exit button is clicked', () => {});
-  });*/
+      const profileButton = fixture.nativeElement.querySelector('.profile-button');
+      const exitButton = fixture.nativeElement.querySelector('.exit-button');
+
+      expect(profileButton).toBeTruthy();
+      expect(exitButton).toBeTruthy();
+    });
+
+    it('should redirect to profile page when profile button is clicked', () => {
+      spyOn(router, 'navigateByUrl');
+
+      fixture.detectChanges();
+
+      const profileButton = fixture.nativeElement.querySelector('.profile-button');
+
+      profileButton.click();
+
+      fixture.detectChanges();
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith(jasmine.stringMatching('/profile'), {
+        skipLocationChange: false,
+        replaceUrl: false,
+        state: undefined,
+        info: undefined,
+      });
+    });
+
+    it('should clear token and isLoggedIn in localStorage and redirect to login page when exit button is clicked', () => {
+      spyOn(router, 'navigateByUrl');
+
+      fixture.detectChanges();
+
+      const exitButton = fixture.nativeElement.querySelector('.exit-button');
+
+      exitButton.click();
+
+      fixture.detectChanges();
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith(jasmine.stringMatching('/login'), {
+        skipLocationChange: false,
+        replaceUrl: false,
+        state: undefined,
+        info: undefined,
+      });
+    });
+  });
 
   /*describe('navigation', () => {
     it('should renders correctly', () => {});
