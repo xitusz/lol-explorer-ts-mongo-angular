@@ -13,36 +13,79 @@ describe('FooterComponent', () => {
 
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  /*describe('back to the top icon', () => {
-    it('should render the back to the top icon', () => {});
+  describe('back to the top icon', () => {
+    it('should render the back to the top icon', async () => {
+      const arrowIcon = fixture.nativeElement.querySelector('.arrow-icon');
 
-    it('should scroll to the top when the arrow icon is clicked.', () => {});
-  });*/
+      expect(arrowIcon).toBeTruthy();
+    });
 
-  /*describe('contact icons', () => {
-    it('should render the LinkedIn icon', () => {});
+    it('should scroll to the top when the arrow icon is clicked.', () => {
+      const scrollTo = spyOn(window, 'scrollTo');
 
-    it('should render the LinkedIn link', () => {});
+      const arrowIcon = fixture.nativeElement.querySelector('.arrow-icon');
 
-    it('should render the Gmail icon', () => {});
+      arrowIcon.dispatchEvent(new Event('click'));
 
-    it('should render the Gmail link', () => {});
+      fixture.detectChanges();
 
-    it('should render the Github icon', () => {});
+      expect(scrollTo).toHaveBeenCalled();
+    });
+  });
 
-    it('should render the Github link', () => {});
-  });*/
+  describe('contact icons', () => {
+    it('should render the LinkedIn icon', () => {
+      const linkedinIcon = fixture.nativeElement.querySelector('.bi-linkedin');
 
-  /*describe('copyright message', () => {
-    it('should render the copyright message', () => {});
+      expect(linkedinIcon).toBeTruthy();
+    });
 
-    it("should render 'gabriel alves' with a link to the GitHub profile", () => {});
-  });*/
+    it('should render the LinkedIn link', () => {
+      const linkedinLink = fixture.nativeElement.querySelector('[data-testid="linkedin-link"]');
+
+      expect(linkedinLink.getAttribute('href')).toContain('https://www.linkedin.com/in/gabrielalves1/');
+    });
+
+    it('should render the Gmail icon', () => {
+      const gmailIcon = fixture.nativeElement.querySelector('.bi-envelope');
+
+      expect(gmailIcon).toBeTruthy();
+    });
+
+    it('should render the Gmail link', () => {
+      const gmailLink = fixture.nativeElement.querySelector('[data-testid="gmail-link"]');
+
+      expect(gmailLink.getAttribute('href')).toContain('mailto:2kgabrielalves@gmail.com');
+    });
+
+    it('should render the Github icon', () => {
+      const gitHubIcon = fixture.nativeElement.querySelector('.bi-github');
+
+      expect(gitHubIcon).toBeTruthy();
+    });
+
+    it('should render the Github link', () => {
+      const gitHubLink = fixture.nativeElement.querySelector('[data-testid="github-link"]');
+
+      expect(gitHubLink.getAttribute('href')).toContain('https://github.com/xitusz');
+    });
+  });
+
+  describe('copyright message', () => {
+    it('should render the copyright message', () => {
+      expect(fixture.nativeElement.textContent).toContain('© 2023 Gabriel Alves . All Rights Reserved.');
+    });
+
+    it("should render 'gabriel alves' with a link to the GitHub profile", () => {
+      const githubLink = fixture.nativeElement.querySelector('.a-footer');
+
+      expect(githubLink.getAttribute('href')).toBe('https://github.com/xitusz');
+    });
+  });
 });
