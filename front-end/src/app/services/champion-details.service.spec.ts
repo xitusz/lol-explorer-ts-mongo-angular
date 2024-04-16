@@ -99,17 +99,7 @@ describe('ChampionDetailsService', () => {
     };
 
     service.getChampionDetails(championName).subscribe((details) => {
-      expect(details.length).toBe(1);
-      expect(details[0].id).toBe(mock.id);
-      expect(details[0].name).toBe(mock.name);
-      expect(details[0].title).toBe(mock.title);
-      expect(details[0].lore).toContain(mock.lore);
-      expect(details[0].tags.length).toBe(2);
-      expect(details[0].passive.name).toBe(mock.passive.name);
-      expect(details[0].passive.description).toContain(mock.passive.description);
-      expect(details[0].passive.image.full).toBe(mock.passive.image.full);
-      expect(details[0].spells.length).toBe(4);
-      expect(details[0].skins.length).toBe(4);
+      expect(details[0]).toBe(mock);
     });
 
     const req = httpMock.expectOne(`http://ddragon.leagueoflegends.com/cdn/14.4.1/data/pt_BR/champion/${championName}.json`);
@@ -131,12 +121,7 @@ describe('ChampionDetailsService', () => {
     };
 
     service.getSkillVideos().subscribe((videos) => {
-      expect(videos['Aatrox']).toBeDefined();
-      expect(videos['Aatrox']['P']).toBe(mockVideo.Aatrox.P);
-      expect(videos['Aatrox']['Q']).toBe(mockVideo.Aatrox.Q);
-      expect(videos['Aatrox']['W']).toBe(mockVideo.Aatrox.W);
-      expect(videos['Aatrox']['E']).toBe(mockVideo.Aatrox.E);
-      expect(videos['Aatrox']['R']).toBe(mockVideo.Aatrox.R);
+      expect(videos).toBe(mockVideo);
     });
 
     const req = httpMock.expectOne('../../assets/data/skillVideos.json');
